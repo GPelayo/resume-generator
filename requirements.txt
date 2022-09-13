@@ -1,0 +1,5 @@
+Django==3.2.6
+psycopg2==2.9.1
+python-dotenv==0.20.0
+django-bakery
+pylatex
