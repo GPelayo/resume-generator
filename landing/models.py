@@ -10,7 +10,7 @@ class ContactInfo(models.Model):
         return self.display_name or self.name
 
 
-class Education(models.Model):
+class EducationSection(models.Model):
     name = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
@@ -41,7 +41,7 @@ class BootstrapDecorService(Service):
         verbose_name_plural = 'Bootstrap Decor Service Items'
 
 
-class ResumeItem(models.Model):
+class JobSection(models.Model):
     name = models.CharField(max_length=31)
     years = models.CharField(max_length=15)
     position = models.CharField(max_length=31)
@@ -58,7 +58,7 @@ class ResumeItem(models.Model):
 
 class JobItem(models.Model):
     description = models.TextField()
-    biography = models.ForeignKey('ResumeItem', on_delete=models.CASCADE)
+    biography = models.ForeignKey('landing.JobSection', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Job Item'
@@ -69,7 +69,7 @@ class Biography(models.Model):
     name = models.CharField(max_length=15, primary_key=True)
     summary = models.TextField()
     max_years = models.PositiveIntegerField()
-    resume_item = models.ManyToManyField('ResumeItem', blank=True)
+    job_section = models.ManyToManyField('landing.JobSection', blank=True)
 
     def __str__(self):
         return self.name
