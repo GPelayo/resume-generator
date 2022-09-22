@@ -6,8 +6,8 @@ from landing.models import (Biography,
                             EducationSection,
                             HeroSubtitle,
                             JobItem,
+                            JobSection,
                             Person,
-                            ResumeItem,
                             Skill)
 
 
@@ -45,7 +45,7 @@ class ContactInfoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Biography, BiographyAdmin)
-admin.site.register(ResumeItem, ResumeItemAdmin)
+admin.site.register(JobSection, JobSectionAdmin)
 admin.site.register(HeroSubtitle)
 admin.site.register(Skill)
 admin.site.register(ContactInfo)
