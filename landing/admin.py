@@ -1,6 +1,14 @@
 from django.contrib import admin
 
-from landing.models import Biography, ResumeItem, JobItem, Skill, BootstrapDecorService, HeroSubtitle
+from landing.models import (Biography,
+                            BootstrapDecorService,
+                            ContactInfo,
+                            EducationSection,
+                            HeroSubtitle,
+                            JobItem,
+                            Person,
+                            ResumeItem,
+                            Skill)
 
 
 class JobItemInline(admin.StackedInline):
@@ -28,7 +36,18 @@ class BiographyAdmin(admin.ModelAdmin):
     inlines = [SkillInline, ServicesInline]
 
 
+class EducationAdmin(admin.ModelAdmin):
+    fields = ['name', 'city', 'country', 'degree', 'graduation_year']
+
+
+class ContactInfoAdmin(admin.ModelAdmin):
+    fields = ['name', 'display_name', 'info']
+
+
 admin.site.register(Biography, BiographyAdmin)
 admin.site.register(ResumeItem, ResumeItemAdmin)
 admin.site.register(HeroSubtitle)
 admin.site.register(Skill)
+admin.site.register(ContactInfo)
+admin.site.register(EducationSection)
+admin.site.register(Person)
