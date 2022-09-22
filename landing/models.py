@@ -67,8 +67,17 @@ class JobItem(models.Model):
         verbose_name_plural = 'Job Items'
 
 
+class Person(models.Model):
+    first_name = models.CharField(max_length=31)
+    last_name = models.CharField(max_length=31)
+
+    def __str__(self):
+        return f'{self.last_name}, {self.first_name}'
+
+
 class Biography(models.Model):
     name = models.CharField(max_length=15, primary_key=True)
+    hero = models.ForeignKey(Person, on_delete=models.CASCADE)
     summary = models.TextField()
     max_years = models.PositiveIntegerField()
     job_section = models.ManyToManyField('landing.JobSection', blank=True)
