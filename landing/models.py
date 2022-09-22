@@ -50,10 +50,6 @@ class JobSection(models.Model):
     location = models.CharField(max_length=31)
     order = models.IntegerField()
 
-    class Meta:
-        verbose_name = 'Resume Item'
-        verbose_name_plural = 'Resume Items'
-
     def __str__(self):
         return f"({self.pk}) {self.name}"
 
@@ -80,7 +76,8 @@ class Biography(models.Model):
     hero = models.ForeignKey(Person, on_delete=models.CASCADE)
     summary = models.TextField()
     max_years = models.PositiveIntegerField()
-    job_section = models.ManyToManyField('landing.JobSection', blank=True)
+    job_sections = models.ManyToManyField('landing.JobSection', blank=True)
+    education_sections = models.ManyToManyField('landing.EducationSection', blank=True)
 
     def __str__(self):
         return self.name

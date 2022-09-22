@@ -16,7 +16,7 @@ class JobItemInline(admin.StackedInline):
     extra = 1
 
 
-class ResumeItemAdmin(admin.ModelAdmin):
+class JobSectionAdmin(admin.ModelAdmin):
     fields = ['name', 'years', 'position', 'location', 'order']
     inlines = [JobItemInline]
 
@@ -32,7 +32,7 @@ class ServicesInline(admin.StackedInline):
 
 
 class BiographyAdmin(admin.ModelAdmin):
-    fields = ['name', 'summary', 'max_years', 'resume_item']
+    fields = ['name', 'summary', 'max_years', 'job_sections', 'education_sections']
     inlines = [SkillInline, ServicesInline]
 
 

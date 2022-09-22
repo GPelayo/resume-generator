@@ -23,7 +23,7 @@ class LandingPageView(BuildableTemplateView):
         for skill in skills:
             skill.percent = int((skill.years/biography.max_years)*100)
 
-        resume = biography.resume_item.all()
+        resume = biography.job_sections.all()
         for resume_item in resume:
             resume_item.job_items = JobItem.objects.filter(biography=resume_item)
 
