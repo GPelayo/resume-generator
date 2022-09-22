@@ -1,6 +1,23 @@
 from django.db import models
 
 
+class ContactInfo(models.Model):
+    name = models.CharField(max_length=31, primary_key=True)
+    display_name = models.CharField(max_length=31, null=True, blank=True)
+    info = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.display_name or self.name
+
+
+class Education(models.Model):
+    name = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    degree = models.CharField(max_length=255)
+    graduation_year = models.IntegerField()
+
+
 class Skill(models.Model):
     name = models.CharField(max_length=31)
     years = models.PositiveIntegerField()
