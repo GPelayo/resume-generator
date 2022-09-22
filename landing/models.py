@@ -7,6 +7,12 @@ class ContactInfo(models.Model):
     info = models.CharField(max_length=255)
     order = models.IntegerField()
 
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        if not self.display_name:
+            self.display_name = self.name
+        super().save(force_insert, force_update, using, update_fields)
+
     def __str__(self):
         return self.display_name or self.name
 
