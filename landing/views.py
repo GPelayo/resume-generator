@@ -28,7 +28,7 @@ class LandingPageView(BuildableTemplateView):
             resume_item.job_items = JobItem.objects.filter(biography=resume_item)
 
         return {
-            'summary': biography.summary,
+            'biography': biography,
             'left_skills': skills[:len(skills)//2 + 1],
             'right_skills': skills[len(skills)//2 + 1:],
             'services': services,
