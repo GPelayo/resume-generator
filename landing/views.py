@@ -33,5 +33,5 @@ class LandingPageView(BuildableTemplateView):
             'right_skills': skills[len(skills)//2 + 1:],
             'services': services,
             'resume': sorted(resume, key=lambda x: x.order, reverse=True),
-            'subtitles': ', '.join([title.name for title in HeroSubtitle.objects.all()])
+            'education': EducationSection.objects.all()
         }
