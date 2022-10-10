@@ -1,11 +1,22 @@
 from django.db import models
+from django.utils.translation import gettext_lazy
 
 
 class ContactInfo(models.Model):
+    class ContactType(models.TextChoices):
+        OTHER = 'other', gettext_lazy('Other')
+        GITHUB = 'github', gettext_lazy('Github')
+        MOBILE_PHONE = 'mobile-phone', gettext_lazy('Mobile Phone Number')
+        PERSONAL_WEBSITE = 'personal-website', gettext_lazy('Website')
+        LINKEDIN = 'linkedin', gettext_lazy('LinkedIn')
+        EMAIL = 'email', gettext_lazy('Email')
+
+
     name = models.CharField(max_length=31, primary_key=True)
     display_name = models.CharField(max_length=31, null=True, blank=True)
     info = models.CharField(max_length=255)
     order = models.IntegerField()
+    contact_type = models.CharField(max_length=31, choices=ContactType.choices, default=ContactType.OTHER)
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
