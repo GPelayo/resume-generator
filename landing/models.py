@@ -91,7 +91,7 @@ class Person(models.Model):
 
 
 class Biography(models.Model):
-    name = models.CharField(max_length=15, primary_key=True)
+    biography_name = models.CharField(max_length=15, primary_key=True)
     hero = models.ForeignKey(Person, on_delete=models.CASCADE)
     summary = models.TextField()
     max_years = models.PositiveIntegerField()
@@ -99,7 +99,7 @@ class Biography(models.Model):
     education_sections = models.ManyToManyField('landing.EducationSection', blank=True)
 
     def __str__(self):
-        return self.name
+        return self.biography_name
 
     class Meta:
         verbose_name_plural = 'Biographies'
