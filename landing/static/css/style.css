@@ -210,6 +210,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 1px;
   border-bottom: 3px solid #0a5;
 }
+
 @media (min-width: 1024px) {
   #hero {
     background-attachment: fixed;
@@ -235,8 +236,8 @@ section {
   overflow: hidden;
 }
 
-.section-bg {
-  background: #e4f9ed;
+.section-bg:nth-of-type(odd) {
+  background: #f9fff9;
 }
 
 .section-title {
@@ -248,7 +249,6 @@ section {
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
-  color: #144d2c;
 }
 .section-title h2::after {
   content: "";
@@ -366,7 +366,7 @@ section.main-section:last-child {
   font-style: normal;
 }
 .skills .progress-bar-wrap {
-  background: #dce8f8;
+  background: #dcf8dc;
   height: 10px;
 }
 .skills .progress-bar {
@@ -403,7 +403,7 @@ section.main-section:last-child {
 }
 .resume .resume-item h5 {
   font-size: 16px;
-  background: #e4f9ed;
+  background: #dcf8dc;
   padding: 5px 15px;
   display: inline-block;
   font-weight: 600;
