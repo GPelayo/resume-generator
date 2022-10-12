@@ -1,9 +1,44 @@
+from typing import List
+
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from bakery.views import BuildableTemplateView
-from landing.models import Biography, BootstrapDecorService, Skill, JobItem, HeroSubtitle
+from landing.models import (Biography,
+                            BootstrapDecorService,
+                            ContactInfo,
+                            EducationSection,
+                            JobHighlight,
+                            HeroSubtitle,
+                            Skill)
 
+
+class ContactButtonFactory:
+    class ContactButton:
+        contact_link: str
+        boxicon_class: str
+        button_class: str
+
+        def __init__(self, name):
+            contact_type = ContactInfo.ContactType
+            contact_info = ContactInfo.objects.get(name=name)
+            self.contact_link = contact_info.info
+            print(name, contact_info.info)
+            if contact_info.contact_type == contact_type.GITHUB:
+                self.boxicon_class = 'bx bxl-github'
+                self.button_class = 'github'
+            elif contact_info.contact_type == contact_type.LINKEDIN:
+                self.boxicon_class = 'bx bxl-linkedin'
+                self.button_class = 'linkedin'
+            elif contact_info.contact_type == contact_type.EMAIL:
+                self.boxicon_class = 'bx bx-envelope'
+                self.button_class = 'email'
+                contact_info.info = f'mailto:{contact_info.info}'
+            else:
+                self.boxicon_class = 'bx bx-paper-plane'
+
+    def create_buttons(self, names: List[str]):
+        return [self.ContactButton(name) for name in names]
 
 def landing(request: HttpRequest) -> HttpResponse:
     context = LandingPageView().get_context_data()
@@ -20,6 +55,8 @@ class LandingPageView(BuildableTemplateView):
         services = BootstrapDecorService.objects.filter(biography=biography)
         skills = sorted(Skill.objects.filter(biography=biography), key=lambda x: x.years, reverse=True)
 
+        contact_names = ['E-Mail', 'Github', 'LinkedIn']
+
         for skill in skills:
             skill.percent = int((skill.years/biography.max_years)*100)
 
@@ -28,10 +65,12 @@ class LandingPageView(BuildableTemplateView):
             resume_item.job_items = JobItem.objects.filter(biography=resume_item)
 
         return {
+            'hero': biography.hero,
             'biography': biography,
             'left_skills': skills[:len(skills)//2 + 1],
             'right_skills': skills[len(skills)//2 + 1:],
             'services': services,
+            'contact_info': buttons,
             'resume': sorted(resume, key=lambda x: x.order, reverse=True),
             'education': EducationSection.objects.all(),
             'subtitles': ', '.join([title.name for title in HeroSubtitle.objects.filter(name='Software Engineer')])

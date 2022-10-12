@@ -13,10 +13,12 @@ class ContactInfo(models.Model):
 
 
     name = models.CharField(max_length=31, primary_key=True)
+    person = models.ForeignKey('Person', on_delete=models.CASCADE)
     display_name = models.CharField(max_length=31, null=True, blank=True)
     info = models.CharField(max_length=255)
     order = models.IntegerField()
     contact_type = models.CharField(max_length=31, choices=ContactType.choices, default=ContactType.OTHER)
+    biography = models.ForeignKey('Biography', on_delete=models.CASCADE)
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
