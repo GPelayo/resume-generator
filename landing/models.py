@@ -67,6 +67,7 @@ class JobSection(models.Model):
     years = models.CharField(max_length=15)
     position = models.CharField(max_length=31)
     location = models.CharField(max_length=31)
+    description = models.TextField()
     order = models.IntegerField()
 
     def __str__(self):

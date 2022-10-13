@@ -17,8 +17,7 @@ class JobItemInline(admin.StackedInline):
 
 
 class JobSectionAdmin(admin.ModelAdmin):
-    fields = ['name', 'years', 'position', 'location', 'order']
-    inlines = [JobItemInline]
+    fields = ['name', 'years', 'position', 'location', 'description', 'order']
 
 
 class SkillInline(admin.StackedInline):
