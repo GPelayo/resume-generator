@@ -40,10 +40,9 @@ class ContactButtonFactory:
     def create_buttons(self, names: List[str]):
         return [self.ContactButton(name) for name in names]
 
-def landing(request: HttpRequest) -> HttpResponse:
+def landing(self) -> HttpResponse:
     context = LandingPageView().get_context_data()
-
-    return render(request, "index.html", context)
+    return render(self, "index.html", context)
 
 
 class LandingPageView(BuildableTemplateView):
