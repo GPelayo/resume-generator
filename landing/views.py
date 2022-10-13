@@ -5,7 +5,6 @@ from django.shortcuts import render
 
 from bakery.views import BuildableTemplateView
 from landing.models import (Biography,
-                            BootstrapDecorService,
                             ContactInfo,
                             EducationSection,
                             JobHighlight,
@@ -51,7 +50,6 @@ class LandingPageView(BuildableTemplateView):
 
     def get_context_data(self, **kwargs):
         biography = Biography.objects.get(biography_name='landing')
-        services = BootstrapDecorService.objects.filter(biography=biography)
         skills = sorted(Skill.objects.filter(biography=biography), key=lambda x: x.years, reverse=True)
 
         contact_names = ['E-Mail', 'Github', 'LinkedIn']
@@ -68,7 +66,6 @@ class LandingPageView(BuildableTemplateView):
             'biography': biography,
             'left_skills': skills[:len(skills)//2 + 1],
             'right_skills': skills[len(skills)//2 + 1:],
-            'services': services,
             'contact_info': buttons,
             'resume': sorted(resume, key=lambda x: x.order, reverse=True),
             'education': EducationSection.objects.all(),
