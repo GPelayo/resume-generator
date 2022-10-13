@@ -51,7 +51,7 @@ class LandingPageView(BuildableTemplateView):
     build_path = template_name
 
     def get_context_data(self, **kwargs):
-        biography = Biography.objects.get(name='landing')
+        biography = Biography.objects.get(biography_name='landing')
         services = BootstrapDecorService.objects.filter(biography=biography)
         skills = sorted(Skill.objects.filter(biography=biography), key=lambda x: x.years, reverse=True)
 
