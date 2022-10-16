@@ -22,7 +22,6 @@ class ContactButtonFactory:
             contact_type = ContactInfo.ContactType
             contact_info = ContactInfo.objects.get(name=name)
             self.contact_link = contact_info.info
-            print(name, contact_info.info)
             if contact_info.contact_type == contact_type.GITHUB:
                 self.boxicon_class = 'bx bxl-github'
                 self.button_class = 'github'
