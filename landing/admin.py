@@ -5,19 +5,20 @@ from landing.models import (Biography,
                             ContactInfo,
                             EducationSection,
                             HeroSubtitle,
-                            JobItem,
+                            JobHighlight,
                             JobSection,
                             Person,
                             Skill)
 
 
-class JobItemInline(admin.StackedInline):
-    model = JobItem
+class JobHighlightInline(admin.StackedInline):
+    model = JobHighlight
     extra = 1
 
 
 class JobSectionAdmin(admin.ModelAdmin):
     fields = ['name', 'years', 'position', 'location', 'description', 'order']
+    inlines = [JobHighlightInline]
 
 
 class SkillInline(admin.StackedInline):

@@ -74,13 +74,13 @@ class JobSection(models.Model):
         return f"({self.pk}) {self.name}"
 
 
-class JobItem(models.Model):
+class JobHighlight(models.Model):
     description = models.TextField()
-    biography = models.ForeignKey('landing.JobSection', on_delete=models.CASCADE)
+    job_section = models.ForeignKey('landing.JobSection', on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = 'Job Item'
-        verbose_name_plural = 'Job Items'
+        verbose_name = 'Job Highlight'
+        verbose_name_plural = 'Job Highlight'
 
 
 class Person(models.Model):

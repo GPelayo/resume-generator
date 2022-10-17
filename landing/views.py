@@ -58,7 +58,8 @@ class LandingPageView(BuildableTemplateView):
 
         resume = biography.job_sections.all()
         for resume_item in resume:
-            resume_item.job_items = JobItem.objects.filter(biography=resume_item)
+            resume_item.job_items = JobHighlight.objects.filter(job_section=resume_item)
+        buttons = ContactButtonFactory().create_buttons(contact_names)
 
         return {
             'hero': biography.hero,
