@@ -31,7 +31,7 @@ class ContactButtonFactory:
             elif contact_info.contact_type == contact_type.EMAIL:
                 self.boxicon_class = 'bx bx-envelope'
                 self.button_class = 'email'
-                contact_info.info = f'mailto:{contact_info.info}'
+                self.contact_link = f'mailto:{contact_info.info}'
             else:
                 self.boxicon_class = 'bx bx-paper-plane'
 
