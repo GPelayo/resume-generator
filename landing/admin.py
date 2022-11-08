@@ -32,7 +32,7 @@ class ServicesInline(admin.StackedInline):
 
 
 class BiographyAdmin(admin.ModelAdmin):
-    fields = ['name', 'summary', 'max_years', 'job_sections', 'education_sections']
+    fields = ['summary', 'max_years', 'job_sections', 'education_sections']
     inlines = [SkillInline, ServicesInline]
 
 
